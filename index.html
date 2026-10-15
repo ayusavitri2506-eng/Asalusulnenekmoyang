@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Petualangan Sejarah: Nenek Moyang & Kuliner Tanjabtim</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Cinzel:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #0f172a;
+            color: #f8fafc;
+        }
+        .title-font {
+            font-family: 'Cinzel', serif;
+        }
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .btn-gradient {
+            background: linear-gradient(135deg, #059669 0%, #0d9488 100%);
+            transition: all 0.3s ease;
+        }
+        .btn-gradient:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -5px rgba(13, 148, 136, 0.4);
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            border-color: #34d399;
+        }
+        /* Canvas Game Styling */
+        #gameCanvas {
+            background: linear-gradient(to bottom, #0284c7, #0369a1);
+            touch-action: none;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between relative overflow-x-hidden">
+
+    <!-- Header -->
+    <header class="glass-panel sticky top-0 z-50 px-4 py-3 border-b border-slate-700">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="p-2 bg-emerald-500/20 text-emerald-400 rounded-lg text-xl">
+                    <i class="fa-solid fa-compass"></i>
+                </div>
+                <div>
+                    <h1 class="title-font text-lg md:text-xl font-bold text-amber-400 leading-tight">Nusantara Quest</h1>
+                    <p class="text-xs text-slate-400">Sejarah Kelas X Fase E • Tanjung Jabung Timur</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-4 text-sm">
+                <div class="bg-slate-800 px-3 py-1.5 rounded-full border border-slate-700 flex items-center gap-2">
+                    <i class="fa-solid fa-trophy text-amber-400"></i>
+                    <span id="scoreText" class="font-bold text-emerald-400">Skor: 0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="max-w-6xl mx-auto w-full p-4 md:p-6 flex-grow">
+        
+        <!-- Tab Navigation -->
+        <div class="flex flex-wrap gap-2 mb-6 border-b border-slate-700 pb-3">
+            <button onclick="switchTab('materi')" id="tab-materi" class="px-4 py-2 rounded-lg font-semibold text-sm transition-all bg-emerald-600 text-white shadow-lg">
+                <i class="fa-solid fa-book-open mr-2"></i>1. Teori & Jejak Sejarah
+            </button>
+            <button onclick="switchTab('kuliner')" id="tab-kuliner" class="px-4 py-2 rounded-lg font-semibold text-sm transition-all bg-slate-800 text-slate-300 hover:bg-slate-700">
+                <i class="fa-solid fa-utensils mr-2"></i>2. Kuliner Tanjabtim
+            </button>
+            <button onclick="switchTab('game')" id="tab-game" class="px-4 py-2 rounded-lg font-semibold text-sm transition-all bg-slate-800 text-slate-300 hover:bg-slate-700">
+                <i class="fa-solid fa-gamepad mr-2"></i>3. Mini-Game Ekspedisi
+            </button>
+            <button onclick="switchTab('kuis')" id="tab-kuis" class="px-4 py-2 rounded-lg font-semibold text-sm transition-all bg-slate-800 text-slate-300 hover:bg-slate-700">
+                <i class="fa-solid fa-pen-to-square mr-2"></i>4. Evaluasi Kuis
+            </button>
+        </div>
+
+        <!-- TAB 1: MATERI SEJARAH -->
+        <section id="sec-materi" class="space-y-6">
+            <div class="glass-panel p-6 rounded-2xl">
+                <h2 class="title-font text-2xl font-bold text-amber-400 mb-2">Asal Usul Nenek Moyang Bangsa Indonesia</h2>
+                <p class="text-slate-300 text-sm md:text-base leading-relaxed mb-4">
+                    Masyarakat Indonesia modern merupakan hasil sintesis dari berbagai migrasi manusia purba dan migran berbahasa Austronesia serta Austroasiatik selama ribuan tahun.
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+                    <div class="bg-slate-800/80 p-5 rounded-xl border border-slate-700 card-hover">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="w-8 h-8 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center font-bold">1</span>
+                            <h3 class="font-bold text-lg text-blue-300">Teori Out of Taiwan</h3>
+                        </div>
+                        <p class="text-xs md:text-sm text-slate-300">
+                            Menyatakan bahwa leluhur bangsa Indonesia berasal dari Taiwan sekitar 4.000–3.000 SM. Merekalah yang membawa tradisi **penanaman padi, penggunaan perahu cadik, serta pengolahan sagu & resep makanan berbasis pesisir**.
+                        </p>
+                    </div>
+
+                    <div class="bg-slate-800/80 p-5 rounded-xl border border-slate-700 card-hover">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="w-8 h-8 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold">2</span>
+                            <h3 class="font-bold text-lg text-amber-300">Gelombang Proto & Deutro Melayu</h3>
+                        </div>
+                        <p class="text-xs md:text-sm text-slate-300">
+                            **Proto Melayu (1500 SM):** Membawa kebudayaan Neolitikum (Kapak Persegi/Lonjong).<br>
+                            **Deutro Melayu (500 SM):** Membawa kebudayaan Perunggu (Dong Son), teknik bertani maju, dan pemukiman pesisir/muara sungai.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="mt-6 bg-emerald-950/40 border border-emerald-500/30 p-4 rounded-xl flex items-start gap-3">
+                    <i class="fa-solid fa-lightbulb text-amber-400 text-xl mt-1"></i>
+                    <p class="text-xs md:text-sm text-emerald-200">
+                        <strong>Hubungan dengan Tanjung Jabung Timur:</strong> Wilayah pesisir Tanjabtim yang dialiri muara Sungai Batanghari merupakan jalur strategis pemukiman leluhur laut & bahari (Suku Duano/Orang Laut) yang mengandalkan hasil laut dan olahan sagu sebagai bahan pangan utama sejak zaman praaksara hingga Hindu-Buddha.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 2: KULINER TANJABTIM -->
+        <section id="sec-kuliner" class="hidden space-y-6">
+            <div class="glass-panel p-6 rounded-2xl">
+                <h2 class="title-font text-2xl font-bold text-amber-400 mb-2">Jejak Sejarah dalam Kuliner Tanjabtim</h2>
+                <p class="text-slate-300 text-sm mb-6">
+                    Kuliner khas Kab. Tanjung Jabung Timur, Jambi, mencerminkan akulturasi budaya bahari nenek moyang Austronesia dan kearifan lokal kawasan pesisir sungai/laut.
+                </p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Food Item 1 -->
+                    <div class="bg-slate-800 rounded-xl overflow-hidden border border-slate-700 card-hover">
+                        <div class="h-36 bg-gradient-to-r from-amber-700 to-orange-600 flex items-center justify-center text-4xl">
+                            🍲
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-lg text-amber-300">Gulai Sabak</h3>
+                            <span class="inline-block px-2 py-0.5 text-xs bg-amber-500/20 text-amber-400 rounded mt-1 mb-2">Olahan Pesisir & Rempah</span>
+                            <p class="text-xs text-slate-300 leading-relaxed">
+                                Gulai khas Muara Sabak berbahan ikan laut/sembilang segar dengan rempah-rempah yang diperkenalkan oleh jalur perdagangan leluhur bahari.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Food Item 2 -->
+                    <div class="bg-slate-800 rounded-xl overflow-hidden border border-slate-700 card-hover">
+                        <div class="h-36 bg-gradient-to-r from-yellow-700 to-amber-600 flex items-center justify-center text-4xl">
+                            🫓
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-lg text-amber-300">Lempeng Sagu</h3>
+                            <span class="inline-block px-2 py-0.5 text-xs bg-emerald-500/20 text-emerald-400 rounded mt-1 mb-2">Warisan Pangan Purba</span>
+                            <p class="text-xs text-slate-300 leading-relaxed">
+                                Sagu adalah makanan pokok asli ras Austronesia sebelum dominasi beras. Lempeng sagu dipanggang secara tradisional oleh masyarakat pesisir Tanjabtim.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Food Item 3 -->
+                    <div class="bg-slate-800 rounded-xl overflow-hidden border border-slate-700 card-hover">
+                        <div class="h-36 bg-gradient-to-r from-emerald-800 to-teal-700 flex items-center justify-center text-4xl">
+                            🧁
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-lg text-amber-300">Kue Padamarus</h3>
+                            <span class="inline-block px-2 py-0.5 text-xs bg-teal-500/20 text-teal-300 rounded mt-1 mb-2">Tradisi Daun Pisang</span>
+                            <p class="text-xs text-slate-300 leading-relaxed">
+                                Kudapan manis berbahan tepung beras, santan, dan gula merah yang dikukus dengan takir daun pisang. Teknik pembungkusan ini diwarisi secara turun-temurun.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 3: CANVAS GAME -->
+        <section id="sec-game" class="hidden space-y-4">
+            <div class="glass-panel p-4 md:p-6 rounded-2xl text-center">
+                <div class="flex flex-wrap justify-between items-center mb-4">
+                    <div>
+                        <h2 class="title-font text-xl md:text-2xl font-bold text-amber-400">Ekspedisi Perahu Cadik Tanjabtim</h2>
+                        <p class="text-xs text-slate-300">Kemudikan perahu nenek moyang, kumpulkan bahan kuliner Tanjabtim & artefak sejarah!</p>
+                    </div>
+                    <div class="mt-2 md:mt-0 flex gap-2">
+                        <button id="startBtn" onclick="startGame()" class="btn-gradient px-4 py-2 rounded-lg text-sm font-bold text-white">
+                            <i class="fa-solid fa-play mr-1"></i> Mulai Game
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Game Container -->
+                <div class="relative w-full overflow-hidden rounded-xl border-2 border-slate-700 flex justify-center bg-slate-900">
+                    <canvas id="gameCanvas" width="700" height="400" class="w-full max-w-2xl h-auto shadow-2xl"></canvas>
+                    
+                    <!-- Game Overlay Modal -->
+                    <div id="gameOverlay" class="absolute inset-0 bg-slate-950/80 backdrop-blur-sm flex flex-col justify-center items-center p-6 text-center">
+                        <i class="fa-solid fa-ship text-5xl text-amber-400 mb-3 animate-bounce"></i>
+                        <h3 class="text-2xl font-bold text-white mb-2" id="overlayTitle">Petualangan Bahari</h3>
+                        <p class="text-sm text-slate-300 max-w-md mb-6" id="overlayDesc">
+                            Gunakan tombol **Panah Kiri/Kanan** atau **Tombol Sentuh** di bawah untuk mengarahkan Perahu Cadik. Kumpulkan **Sagu (🫓)**, **Ikan (🐟)**, dan **Kapar/Kue (🧁)**. Hindari karang!
+                        </p>
+                        <button onclick="startGame()" class="btn-gradient px-6 py-3 rounded-xl font-bold text-white text-base shadow-lg">
+                            Mulai Berlayar 🚀
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Touch Controls for Mobile -->
+                <div class="flex justify-center gap-4 mt-4 md:hidden">
+                    <button id="btnLeft" class="bg-slate-800 active:bg-slate-700 text-white p-4 rounded-full w-16 h-16 text-2xl border border-slate-600 active:scale-95 transition-all">
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </button>
+                    <button id="btnRight" class="bg-slate-800 active:bg-slate-700 text-white p-4 rounded-full w-16 h-16 text-2xl border border-slate-600 active:scale-95 transition-all">
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 4: KUIS -->
+        <section id="sec-kuis" class="hidden space-y-6">
+            <div class="glass-panel p-6 rounded-2xl max-w-2xl mx-auto">
+                <div class="flex justify-between items-center mb-6 border-b border-slate-700 pb-4">
+                    <div>
+                        <h2 class="title-font text-xl font-bold text-amber-400">Evaluasi Sejarah & Kuliner</h2>
+                        <p class="text-xs text-slate-400">Uji pemahaman materi Fase E</p>
+                    </div>
+                    <span id="quizProgress" class="text-xs bg-slate-800 px-3 py-1 rounded-full text-emerald-400 font-semibold border border-slate-700">Soal 1 / 4</span>
+                </div>
+
+                <!-- Quiz Container -->
+                <div id="quizContainer" class="space-y-4">
+                    <h3 id="quizQuestion" class="font-semibold text-lg text-slate-100">...</h3>
+                    <div id="quizOptions" class="space-y-2.5">
+                        <!-- Options generated dynamically -->
+                    </div>
+                    <div id="quizFeedback" class="hidden p-3 rounded-lg text-sm mt-4 font-medium"></div>
+                </div>
+
+                <div class="flex justify-end mt-6">
+                    <button id="nextQuizBtn" onclick="nextQuestion()" class="hidden btn-gradient px-5 py-2 rounded-lg text-sm font-bold text-white">
+                        Lanjut <i class="fa-solid fa-arrow-right ml-1"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="glass-panel mt-8 py-4 border-t border-slate-800 text-center text-xs text-slate-400">
+        <p>© 2026 Pembelajaran Sejarah SMA Kelas X Fase E • Modul Integrasi Budaya Tanjung Jabung Timur</p>
+    </footer>
+
+    <script>
+        // Global State
+        let score = 0;
+        let currentGameScore = 0;
+
+        // --- TAB SWITCHING LOGIC ---
+        function switchTab(tabName) {
+            const tabs = ['materi', 'kuliner', 'game', 'kuis'];
+            tabs.forEach(t => {
+                document.getElementById(`sec-${t}`).classList.add('hidden');
+                document.getElementById(`tab-${t}`).className = "px-4 py-2 rounded-lg font-semibold text-sm transition-all bg-slate-800 text-slate-300 hover:bg-slate-700";
+            });
+
+            document.getElementById(`sec-${tabName}`).classList.remove('hidden');
+            document.getElementById(`tab-${tabName}`).className = "px-4 py-2 rounded-lg font-semibold text-sm transition-all bg-emerald-600 text-white shadow-lg";
+
+            if (tabName === 'game') {
+                initCanvasSize();
+            }
+        }
+
+        function updateGlobalScore(points) {
+            score += points;
+            document.getElementById('scoreText').innerText = `Skor: ${score}`;
+        }
+
+        // --- GAME CANVAS LOGIC ---
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+
+        let isGaming = false;
+        let animationFrameId;
+        let player = { x: 320, y: 330, width: 60, height: 40, speed: 7 };
+        let items = [];
+        let obstacles = [];
+        let gameLoopCounter = 0;
+
+        const itemTypes = [
+            { name: 'Sagu', icon: '🫓', score: 15 },
+            { name: 'Ikan Sembilang', icon: '🐟', score: 20 },
+            { name: 'Padamarus', icon: '🧁', score: 25 }
+        ];
+
+        function initCanvasSize() {
+            // Responsive canvas adjustment
+            const containerWidth = canvas.parentElement.clientWidth;
+            canvas.width = Math.min(containerWidth, 700);
+            canvas.height = 400;
+            player.y = canvas.height - 60;
+            if (player.x > canvas.width - player.width) {
+                player.x = canvas.width / 2 - 30;
+            }
+        }
+
+        window.addEventListener('resize', initCanvasSize);
+
+        let keys = { left: false, right: false };
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft' || e.key === 'a') keys.left = true;
+            if (e.key === 'ArrowRight' || e.key === 'd') keys.right = true;
+        });
+        window.addEventListener('keyup', (e) => {
+            if (e.key === 'ArrowLeft' || e.key === 'a') keys.left = false;
+            if (e.key === 'ArrowRight' || e.key === 'd') keys.right = false;
+        });
+
+        // Touch Control Listeners
+        const btnLeft = document.getElementById('btnLeft');
+        const btnRight = document.getElementById('btnRight');
+
+        btnLeft.addEventListener('touchstart', (e) => { e.preventDefault(); keys.left = true; });
+        btnLeft.addEventListener('touchend', (e) => { e.preventDefault(); keys.left = false; });
+        btnRight.addEventListener('touchstart', (e) => { e.preventDefault(); keys.right = true; });
+        btnRight.addEventListener('touchend', (e) => { e.preventDefault(); keys.right = false; });
+
+        function startGame() {
+            document.getElementById('gameOverlay').classList.add('hidden');
+            initCanvasSize();
+            isGaming = true;
+            currentGameScore = 0;
+            items = [];
+            obstacles = [];
+            player.x = canvas.width / 2 - 30;
+            cancelAnimationFrame(animationFrameId);
+            gameLoop();
+        }
+
+        function spawnObjects() {
+            gameLoopCounter++;
+            // Spawn items
+            if (gameLoopCounter % 40 === 0) {
+                const randomItem = itemTypes[Math.floor(Math.random() * itemTypes.length)];
+                items.push({
+                    x: Math.random() * (canvas.width - 30),
+                    y: -30,
+                    size: 28,
+                    speed: 2 + Math.random() * 2,
+                    ...randomItem
+                });
+            }
+            // Spawn obstacles (Karang/Batu)
+            if (gameLoopCounter % 90 === 0) {
+                obstacles.push({
+                    x: Math.random() * (canvas.width - 30),
+                    y: -30,
+                    size: 30,
+                    speed: 3
+                });
+            }
+        }
+
+        function updateGame() {
+            if (keys.left && player.x > 0) player.x -= player.speed;
+            if (keys.right && player.x < canvas.width - player.width) player.x += player.speed;
+
+            spawnObjects();
+
+            // Update items
+            for (let i = items.length - 1; i >= 0; i--) {
+                let it = items[i];
+                it.y += it.speed;
+
+                // Collision Check with Player
+                if (
+                    it.x < player.x + player.width &&
+                    it.x + it.size > player.x &&
+                    it.y < player.y + player.height &&
+                    it.y + it.size > player.y
+                ) {
+                    currentGameScore += it.score;
+                    updateGlobalScore(it.score);
+                    items.splice(i, 1);
+                    continue;
+                }
+
+                if (it.y > canvas.height) items.splice(i, 1);
+            }
+
+            // Update obstacles
+            for (let i = obstacles.length - 1; i >= 0; i--) {
+                let ob = obstacles[i];
+                ob.y += ob.speed;
+
+                // Collision Check
+                if (
+                    ob.x < player.x + player.width &&
+                    ob.x + ob.size > player.x &&
+                    ob.y < player.y + player.height &&
+                    ob.y + ob.size > player.y
+                ) {
+                    endGame();
+                    return;
+                }
+
+                if (ob.y > canvas.height) obstacles.splice(i, 1);
+            }
+        }
+
+        function drawGame() {
+            // Draw Sea Background
+            ctx.fillStyle = '#0284c7';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Draw Waves
+            ctx.strokeStyle = '#38bdf8';
+            ctx.lineWidth = 2;
+            for (let i = 0; i < canvas.height; i += 40) {
+                ctx.beginPath();
+                ctx.arc((gameLoopCounter * 2 + i * 5) % canvas.width, i, 15, 0, Math.PI);
+                ctx.stroke();
+            }
+
+            // Draw Boat (Perahu Cadik)
+            ctx.fillStyle = '#d97706';
+            ctx.beginPath();
+            ctx.moveTo(player.x, player.y + player.height);
+            ctx.lineTo(player.x + player.width, player.y + player.height);
+            ctx.lineTo(player.x + player.width - 10, player.y + 15);
+            ctx.lineTo(player.x + 10, player.y + 15);
+            ctx.closePath();
+            ctx.fill();
+
+            // Sail
+            ctx.fillStyle = '#f8fafc';
+            ctx.beginPath();
+            ctx.moveTo(player.x + player.width / 2, player.y + 15);
+            ctx.lineTo(player.x + player.width / 2, player.y - 15);
+            ctx.lineTo(player.x + player.width / 2 + 20, player.y + 5);
+            ctx.fill();
+
+            // Draw Items
+            ctx.font = '22px sans-serif';
+            items.forEach(it => {
+                ctx.fillText(it.icon, it.x, it.y);
+            });
+
+            // Draw Obstacles (Karang)
+            ctx.font = '22px sans-serif';
+            obstacles.forEach(ob => {
+                ctx.fillText('🪨', ob.x, ob.y);
+            });
+
+            // Draw In-game Score
+            ctx.fillStyle = '#ffffff';
+            ctx.font = 'bold 14px Plus Jakarta Sans';
+            ctx.fillText(`Hasil Perjalanan: ${currentGameScore} pts`, 15, 25);
+        }
+
+        function gameLoop() {
+            if (!isGaming) return;
+            updateGame();
+            drawGame();
+            animationFrameId = requestAnimationFrame(gameLoop);
+        }
+
+        function endGame() {
+            isGaming = false;
+            document.getElementById('overlayTitle').innerText = 'Ekspedisi Selesai!';
+            document.getElementById('overlayDesc').innerHTML = `Perahu Anda menabrak karang pesisir.<br><strong class="text-emerald-400">Poin dikumpulkan: ${currentGameScore}</strong>`;
+            document.getElementById('gameOverlay').classList.remove('hidden');
+        }
+
+        // --- QUIZ SYSTEM ---
+        const quizData = [
+            {
+                q: "Menurut teori 'Out of Taiwan', leluhur bangsa Indonesia membawa kebudayaan khas Austronesia. Apa bukti pangan purba yang masih dikonsumsi di Tanjabtim?",
+                options: [
+                    "Gandum dan Roti",
+                    "Sagu (dikonsumsi sebagai Lempeng Sagu)",
+                    "Jagung Bakar",
+                    "Kurma"
+                ],
+                correct: 1,
+                explanation: "Masyarakat Austronesia awal mengenal budidaya dan pengolahan sagu di kawasan pesisir sebelum tanaman padi mendominasi."
+            },
+            {
+                q: "Gelombang migrasi Deutro Melayu (500 SM) membawa keahlian bertani dan kebudayaan logam. Bagaimana pengaruh geografisnya terhadap Tanjabtim?",
+                options: [
+                    "Masyarakat tinggal di pegunungan tinggi",
+                    "Memanfaatkan muara sungai Tanjabtim sebagai pusat perdagangan & pemukiman pesisir",
+                    "Tidak berpindah dari daratan Asia",
+                    "Hanya mengandalkan berburu di hutan erat"
+                ],
+                correct: 1,
+                explanation: "Pesisir Tanjung Jabung Timur dan muara Batanghari merupakan lokasi strategis jalur bahari gelombang migrasi Deutro Melayu."
+            },
+            {
+                q: "Kuliner khas Tanjung Jabung Timur 'Gulai Sabak' kaya akan bahan utama berupa...",
+                options: [
+                    "Daging Sapi",
+                    "Ikan Laut / Sembilang segar khas pesisir",
+                    "Ayam Kampung",
+                    "Buah Apel"
+                ],
+                correct: 1,
+                explanation: "Gulai Sabak merupakan cerminan tradisi bahari masyarakat pesisir Muara Sabak Tanjabtim yang kaya akan hasil laut."
+            },
+            {
+                q: "Teknik membungkus makanan tradisional dengan daun pisang seperti pada 'Kue Padamarus' merupakan bukti...",
+                options: [
+                    "Kearifan lokal memanfaat flora lingkungan turun-temurun",
+                    "Pengaruh budaya modern barat",
+                    "Teknik buatan masa kini",
+                    "Hasil impor dari luar negeri"
+                ],
+                correct: 0,
+                explanation: "Penggunaan wadah alami daun pisang/takir adalah bentuk teknologi sederhana pengolahan pangan yang telah diwariskan sejak masa praaksara."
+            }
+        ];
+
+        let currentQuizIndex = 0;
+
+        function loadQuiz() {
+            const quiz = quizData[currentQuizIndex];
+            document.getElementById('quizProgress').innerText = `Soal ${currentQuizIndex + 1} / ${quizData.length}`;
+            document.getElementById('quizQuestion').innerText = quiz.q;
+            
+            const optionsContainer = document.getElementById('quizOptions');
+            optionsContainer.innerHTML = '';
+
+            quiz.options.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = "w-full text-left p-3 rounded-xl bg-slate-800 border border-slate-700 hover:border-emerald-500 hover:bg-slate-750 transition-all text-sm font-medium text-slate-200";
+                btn.innerText = `${String.fromCharCode(65 + idx)}. ${opt}`;
+                btn.onclick = () => selectAnswer(idx);
+                optionsContainer.appendChild(btn);
+            });
+
+            document.getElementById('quizFeedback').classList.add('hidden');
+            document.getElementById('nextQuizBtn').classList.add('hidden');
+        }
+
+        function selectAnswer(selectedIndex) {
+            const quiz = quizData[currentQuizIndex];
+            const feedbackEl = document.getElementById('quizFeedback');
+            const options = document.getElementById('quizOptions').children;
+
+            // Disable all options
+            for (let btn of options) {
+                btn.disabled = true;
+                btn.classList.add('opacity-60');
+            }
+
+            if (selectedIndex === quiz.correct) {
+                options[selectedIndex].className = "w-full text-left p-3 rounded-xl bg-emerald-950 border-2 border-emerald-500 text-sm font-bold text-emerald-200";
+                feedbackEl.className = "p-3 rounded-lg text-sm font-semibold bg-emerald-900/50 text-emerald-300 border border-emerald-500/40";
+                feedbackEl.innerHTML = `<i class="fa-solid fa-circle-check mr-2"></i> Benar! ${quiz.explanation}`;
+                updateGlobalScore(25);
+            } else {
+                options[selectedIndex].className = "w-full text-left p-3 rounded-xl bg-rose-950 border-2 border-rose-500 text-sm font-bold text-rose-200";
+                options[quiz.correct].className = "w-full text-left p-3 rounded-xl bg-emerald-950 border-2 border-emerald-500 text-sm font-bold text-emerald-200";
+                feedbackEl.className = "p-3 rounded-lg text-sm font-semibold bg-rose-900/50 text-rose-300 border border-rose-500/40";
+                feedbackEl.innerHTML = `<i class="fa-solid fa-circle-xmark mr-2"></i> Kurang tepat. ${quiz.explanation}`;
+            }
+
+            feedbackEl.classList.remove('hidden');
+            document.getElementById('nextQuizBtn').classList.remove('hidden');
+        }
+
+        function nextQuestion() {
+            currentQuizIndex++;
+            if (currentQuizIndex < quizData.length) {
+                loadQuiz();
+            } else {
+                // Quiz completed
+                document.getElementById('quizContainer').innerHTML = `
+                    <div class="text-center py-8">
+                        <i class="fa-solid fa-award text-5xl text-amber-400 mb-4 animate-bounce"></i>
+                        <h3 class="text-2xl font-bold text-white mb-2">Selamat! Evaluasi Selesai</h3>
+                        <p class="text-slate-300 text-sm mb-4">Kamu telah mempelajari asal usul nenek moyang bangsa Indonesia dan hubungannya dengan kebudayaan kuliner Tanjung Jabung Timur.</p>
+                        <div class="inline-block bg-emerald-500/20 border border-emerald-500 px-6 py-3 rounded-xl text-emerald-400 font-bold text-lg">
+                            Total Skor Kamu: ${score} Pts
+                        </div>
+                    </div>
+                `;
+                document.getElementById('nextQuizBtn').classList.add('hidden');
+            }
+        }
+
+        // Initial Setup
+        window.onload = function() {
+            loadQuiz();
+        };
+    </script>
+</body>
+</html>
